@@ -1,7 +1,7 @@
 word = input ('give a word')
 lenghth = len(word)
 z = 0
-newword ='f'
+newword ='space'
 while newword != '':
     newword = ''
     newword = word[z:lenghth]
