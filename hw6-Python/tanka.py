@@ -3,7 +3,6 @@
 #второй строки - 7 слогов, третьей строки - 5 слогов, четвёртая и пятая строка - по 7 слогов. Количество предложений в таком тексте может быть любым.
 import random
 def imperative():
-    
     with open('imperatives.txt', 'r',encoding = 'utf-8') as f:
         imperatives =[]
         for line in f:
