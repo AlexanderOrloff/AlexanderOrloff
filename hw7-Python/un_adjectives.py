@@ -13,7 +13,8 @@ def percent(words, number):
             if len(item) > number:
                 j +=1   
     if i != 0:
-        return round(j / i * 100)
+        print('the number of words:', i)
+        return str(round(j / i * 100)) + '%'
     else:
         return 'no matching words were found'
 
@@ -24,5 +25,5 @@ def questions():
     answer = percent(words, number)
     return answer
 
-print(questions())
+print('your result is', questions())
     
