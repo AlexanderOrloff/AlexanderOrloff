@@ -30,4 +30,5 @@ def answer(d,a):
             print(random.choice(a[3]))
         
 print('мы загадали слово для тебя')        
-print(answer(dictionary(open_file()),(dictionary())))
+print(answer(dictionary(open_file()),open_file()))
+
