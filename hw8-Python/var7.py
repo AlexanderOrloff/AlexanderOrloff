@@ -17,7 +17,7 @@ def dictionary(a):
         d[a[0][i]] = a[1][i]
     return d
 
-def answer(d):
+def answer(d,a):
     word = random.choice(list(d.values()))
     for key in d:
         if d[key] == word:
@@ -30,4 +30,4 @@ def answer(d):
             print(random.choice(a[3]))
         
 print('мы загадали слово для тебя')        
-print(answer(dictionary(open_file())))
+print(answer(dictionary(open_file()),(dictionary())))
