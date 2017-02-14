@@ -39,7 +39,7 @@ def csv(text):
             continue
         else:
             m = re.search('<w lemma="(\w+?)" type="(\w+?)">(\w+?)</w>', line)
-            if m != none:
+            if m != None:
                           s = m.group(1)+',' + m.group(2)+',' +m.group(3)
                           arr1.append(s)
     return list
