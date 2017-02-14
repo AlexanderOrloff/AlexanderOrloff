@@ -1,0 +1,59 @@
+import re
+def open_text():
+    with  open('F.xml','r', encoding = 'utf-8') as f:
+        text = f.readlines()
+    return text
+def header(text):
+        i = 1
+        for line in text:
+            if '  </teiHeader>' not in line:
+                i += 1
+            else:
+                break
+        i = str(i)
+        return i
+def dic(text):
+    d = {}
+    for line in text:
+        if "<w lemma=" in line:
+            m = re.search(r'type="(\w+?)"',line)
+            if m != None:
+                k = m.group(1)
+                if k not in d:
+                    d[k] = 1
+                else:
+                    d[k] += 1
+    return d
+def search(text):
+    arr = []
+    for line in text:
+        if "<w lemma=" in line:
+            m = re.search('<w lemma="(\w+?)" type="f\wh\w+?"',line)
+            if m != None:
+                arr.append(m.group(1))
+    return arr
+def csv(text):
+    arr1= []
+    for line  in text:
+        if '<body>' not in line:
+            continue
+        else:
+            m = re.search('<w lemma="(\w+?)" type="(\w+?)">(\w+?)</w>', line)
+            if m != none:
+                          s = m.group(1)+',' + m.group(2)+',' +m.group(3)
+                          arr1.append(s)
+    return list
+def csvwriter(arr1):
+    with open('text.txt', 'w', encoding ='utf-8') as f:
+        f.write('\n'. join(arr1))
+            
+    
+def main(i, d, arr):
+    with open('file.txt','w', encoding = 'utf-8') as f:
+        f.write(i +'\n')
+        for key in d:
+            s = str(key) + ':' + str(d[key]) + '\n' 
+            f.write(s)
+        f.write(','.join(arr))
+main(header(open_text()), dic(open_text()), search(open_text()))
+csvwriter(csv(open_text()))
