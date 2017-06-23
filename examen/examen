@@ -1,0 +1,66 @@
+import os
+import re
+import csv
+def files():
+    for root, dirs, files in os.walk('.'):
+        d = {}
+        for file in files:
+            if file.endswith('.xhtml'):
+                with open(os.path.join(root, file), 'r') as f:
+                    text = f.read()
+                    m = re.findall('<se>', text)
+                    d[file] = len(m)
+    return(d)
+    
+def task1(d):
+    with open ('task1.txt', 'w', encoding =  'utf - 8') as w:
+         for key in d:
+            string = key + '\t' + str(d[key]) + '\n'
+            w.write(string)
+task1(files())
+
+def meto():
+    for root, dirs, files in os.walk('.'):
+        for file in files:
+            arr = []
+            string =''
+            if file.endswith('.xhtml'):
+                with open(os.path.join(root, file), 'r') as f:
+                    text = f.read()
+                
+                    author = re.findall(r'<meta content=".+" name="author"></meta>', text)
+                    author1 = author[0]
+                    author1 = re.sub('<meta content="', '', author1)
+                    author1 = re.sub('" name="author"></meta>', '', author1)
+                    topic = re.findall(r'<meta content=".+" name="topic"></meta>', text)
+                    topic1 = topic[0]
+                    topic1 = re.sub('<meta content="', '', topic1)
+                    topic1 = re.sub('" name="topic"></meta>', '', topic1)
+                    string =  file + ','+author1+','+topic1 
+                    arr.append(string)
+                    
+                
+    return  arr
+def task2(arr):
+    with open('some.csv', 'w', encoding='utf-8') as f: ##8
+        output = csv.writer(f, delimiter=',')
+        header = ['Название файла', 'Автор', 'Тематика текста']
+        output.writerow(header)
+        for el in arr:
+            output.writerow( arr)
+task2(meto())
+
+def bi():
+    for root, dirs, files in os.walk('.'):
+        d = {}
+        for file in files:
+            if file.endswith('.xhtml'):
+                with open(os.path.join(root, file), 'r') as f:
+                    m = re.findall('<w>.*<\w>', f)
+                    for index, line in enumerate(m):
+                        if 'PR' in line:
+                            if 'loc' in m[index+1]:
+                                word1 = re.search ('[A-Яа-яЁё]', line)
+                                word2 = re.search ('[А-Яа-яЁё]', m[index+1])
+                                bi = word1 + ' ' + word2
+                                print(bi)
