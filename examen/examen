@@ -38,8 +38,6 @@ def meto():
                     topic1 = re.sub('" name="topic"></meta>', '', topic1)
                     string =  file + ','+author1+','+topic1 
                     arr.append(string)
-                    
-                
     return  arr
 def task2(arr):
     with open('some.csv', 'w', encoding='utf-8') as f: ##8
